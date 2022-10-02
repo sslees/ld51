@@ -5,6 +5,9 @@ export (int) var run_speed = 100
 export (int) var jump_speed = -275
 export (int) var gravity = 981
 
+signal coin_collected
+signal character_jumped
+
 var jumps = 0
 var velocity = Vector2()
 
@@ -38,9 +41,18 @@ func _process(delta):
 
 func _physics_process(_delta):
     velocity = move_and_slide(velocity, Vector2(0, 1 if $Sprite.flip_v else -1))
+    for i in get_slide_count():
+        var collision = get_slide_collision(i)
+        var tilemap = $"../TileMap"
+        var tile = tilemap.world_to_map(collision.position)
+
+        if tilemap.get_cellv(tile) == 1:
+            tilemap.set_cellv(tile, -1)
+            emit_signal("coin_collected")
 
 
 func jump():
     jumps += 1
     velocity.y = -jump_speed if $Sprite.flip_v else jump_speed
     $Sprite.animation = "jump"
+    emit_signal("character_jumped")
