@@ -22,10 +22,12 @@ animations = [ {
 extents = Vector2( 16, 16 )
 
 [node name="Flag" type="Area2D"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
-frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true

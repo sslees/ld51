@@ -9,6 +9,8 @@ func _ready():
     level = levels.front().instance()
     # warning-ignore:return_value_discarded
     level.get_node("Flag").connect("body_entered", self, "flag_entered")
+    # warning-ignore:return_value_discarded
+    level.get_node("Character/VisibilityNotifier2D").connect("screen_exited", self, "reset_level")
     call_deferred("add_child", level)
 
 
