@@ -25,26 +25,25 @@ func _ready():
 
 
 func _process(_delta):
-    if Input.is_action_just_pressed("menu"):
-        reset_level()
-    elif levels.size() > 1:
+    if levels.size() > 1:
         $CanvasLayer/Time.text = "Time: " + format_time(OS.get_unix_time() - game_time)
     for player in get_children():
-        if player is AudioStreamPlayer2D and not player.is_playing():
+        if player is AudioStreamPlayer and not player.is_playing():
             player.queue_free()
 
 func reset_level():
     level_score = 0
-    $CanvasLayer/Score.text = "Score: %d" % (score + level_score)
+    $CanvasLayer/Score.text = "Score: %d" % score
     if level:
+        level.name = "LevelOld"
         level.queue_free()
     level = levels.front().instance()
-    # warning-ignore:return_value_discarded
-    level.get_node("Character/VisibilityNotifier2D").connect("screen_exited", self, "reset_level")
     # warning-ignore:return_value_discarded
     level.get_node("Character").connect("character_jumped", self, "character_jumped")
     # warning-ignore:return_value_discarded
     level.get_node("Character").connect("coin_collected", self, "coin_collected")
+    # warning-ignore:return_value_discarded
+    level.get_node("Character").connect("character_fell", self, "reset_level")
     if level.has_node("Flag"):
         # warning-ignore:return_value_discarded
         level.get_node("Flag").connect("body_entered", self, "flag_entered")
@@ -69,7 +68,7 @@ func coin_collected():
 
 
 func flag_entered(body):
-    if body == $Level/Character:
+    if has_node("Level/Character") and body == $Level/Character:
         next_level()
 
 
@@ -80,6 +79,6 @@ func format_time(delta):
 func play_sound(sound):
     var player = AudioStreamPlayer.new()
 
-    call_deferred("add_child", player)
     player.stream = sound
     player.play()
+    call_deferred("add_child", player)
