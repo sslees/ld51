@@ -78,7 +78,7 @@ func format_time(delta):
 
 
 func play_sound(sound):
-    var player = AudioStreamPlayer2D.new()
+    var player = AudioStreamPlayer.new()
 
     call_deferred("add_child", player)
     player.stream = sound
