@@ -37,6 +37,6 @@ margin_left = 10.0
 margin_top = 250.0
 custom_colors/font_color = Color( 0.220703, 0.156353, 0.0886156, 1 )
 custom_fonts/font = ExtResource( 5 )
-text = "Level 3: Every 10 seconds, gravity flips."
+text = "Level 2: Every 10 seconds, gravity flips."
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

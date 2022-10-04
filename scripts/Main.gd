@@ -6,10 +6,10 @@ var coin_audio = preload("res://audio/pickupCoin.wav")
 var levels = [
     preload("res://scenes/Level 0.tscn"),
     preload("res://scenes/Level 1.tscn"),
-    preload("res://scenes/Level 2.tscn"),
     preload("res://scenes/Level 3.tscn"),
     preload("res://scenes/Level 4.tscn"),
     preload("res://scenes/Level 5.tscn"),
+    preload("res://scenes/Level 2.tscn"),
     preload("res://scenes/End.tscn"),
 ]
 

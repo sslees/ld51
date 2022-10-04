@@ -37,6 +37,13 @@ margin_left = 10.0
 margin_top = 250.0
 custom_colors/font_color = Color( 0.220703, 0.156353, 0.0886156, 1 )
 custom_fonts/font = ExtResource( 5 )
-text = "Level 5: Every 10 seconds, run speed increases."
+text = "Level 4: Every 10 seconds, run speed increases."
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 2216.0
+margin_top = 212.0
+custom_colors/font_color = Color( 0.220703, 0.156353, 0.0886156, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Leap of faith"
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
